@@ -31,7 +31,7 @@ router.route('/createResetSession').get(controller.createResetSession) //reset a
 
 // Put Method
 router.route('/updateuser').put(Auth,controller.updateUser) //is use to update the user profile
-router.route('/resetPassword').put(controller.resetPassword) //use to reset password 
+router.route('/resetPassword').put(controller.verifyUser,controller.resetPassword) //use to reset password 
 
 
 export default  router ;
