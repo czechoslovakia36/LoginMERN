@@ -23,7 +23,9 @@ router.route('/login').post(controller.verifyUser,controller.login)
 
 router.route('/user/:username').get(controller.getUser) //user with username
 router.route('/generateOTP').get(controller.verifyUser,localVariables,controller.generateOTP) // to generate random OTP
-router.route('/verifyOTP').get(controller.verifyOTP) // verify generated OTP
+// router.route("/generateOTP").get(controller.generateOTP)
+
+router.route('/verifyOTP').get(controller.verifyUser,controller.verifyOTP) // verify generated OTP
 router.route('/createResetSession').get(controller.createResetSession) //reset all the variables
 
 
