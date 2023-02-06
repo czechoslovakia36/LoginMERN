@@ -33,7 +33,7 @@ export async function verifyUser(req,res,next){
         const {username} = req.method == "GET" ? req.query : req.body
 
         // check the user existance
-
+ 
         let exist = await Users.findOne({username})
         if(!exist) return res.status(404).send({error: "Can't find User!"});
         next();
@@ -258,8 +258,12 @@ export async function createResetSession(req,res){
 // PUT: http://localhost:8080/api/resetPassword
 export async function resetPassword(req,res){
     // res.json('resetPassword route')
+
+
     try {
     
+        if(!req.app.locals.resetSession) return res.status(440).send({error:"Session expired!"})
+
         const {username,password} = req.body;
         try {
             Users.findOne({username})
