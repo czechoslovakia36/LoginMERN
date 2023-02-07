@@ -19,7 +19,7 @@ router.route("/register").post(controller.register)
 
 router.route('/registerMail').post(registerMail) //register email
 
-router.route('/authenticate').post((req,res) => res.end()) //  authenticate user 
+router.route('/authenticate').post(controller.verifyUser,(req,res) => res.end()) //  authenticate user 
 
 router.route('/login').post(controller.verifyUser,controller.login)
 
