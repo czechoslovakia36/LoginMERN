@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 
 import avatar from '../assets/profile.png'
 
@@ -13,8 +13,19 @@ import {useFormik} from "formik"
 
 import { usernameValidate } from '../helper/validate';
 
+import { useAuthStore } from '../store/store';
 
 export default function Username() {
+
+  // console.log("BASE URL IS",process.env.REACT_APP_SERVER_DOMAIN)
+  const navigate= useNavigate()
+  const setUsername= useAuthStore(state => state.setUsername);
+  // const username= useAuthStore(state => state.auth.username);
+
+  // useEffect(() => {
+  //   console.log(username)
+  // })
+
 
   const formik = useFormik({
     initialValues:{
@@ -26,6 +37,8 @@ export default function Username() {
     validateOnChange: false,
     onSubmit : async values =>{
       console.log(values)
+      setUsername(values.username)
+      navigate('/password')
     }
   })
   return (
